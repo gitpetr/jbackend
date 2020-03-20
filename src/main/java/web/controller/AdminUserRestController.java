@@ -1,14 +1,15 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-
-//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/admin")
 public class AdminUserRestController {
@@ -21,12 +22,12 @@ public class AdminUserRestController {
     }
 
     @GetMapping("/user")
-    public List<User> listUsers() {
+    public List<User> listUsers(HttpServletRequest request, HttpServletResponse response) {
         return userService.getUsers();
     }
 
     @PostMapping("/saveUser")
-    public User saveUser(@ModelAttribute("user") User user) {
+    public User saveUser(@RequestBody User user) {
         userService.saveUser(user);
         return user;
     }
@@ -38,7 +39,6 @@ public class AdminUserRestController {
 
     @GetMapping("/user/{name}")
     public User userEditForm(@PathVariable String name) {
-        User user = userService.findByUsername(name);
-        return user;
+        return userService.findByUsername(name);
     }
 }
