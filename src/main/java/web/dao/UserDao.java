@@ -5,15 +5,15 @@ import web.model.User;
 import java.util.List;
 
 public interface UserDao {
-    public List<User> getUsers();
+    List<User> getUsers();
 
-    public void saveUser(User user);
+    void saveUser(User user);
 
-    public User getUser(long id);
+    User getUser(long id);
 
-    public void deleteUser(long id);
+    void deleteUser(long id);
 
-    public User findByEmail(String email);
+    User findByEmail(String email);
 
-    public User findByUsername(String username);
+    User findByUsername(String username);
 }

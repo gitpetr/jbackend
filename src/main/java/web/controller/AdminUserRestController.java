@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/admin/user")
 public class AdminUserRestController {
 
     private UserService userService;
@@ -20,7 +20,7 @@ public class AdminUserRestController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/")
     public List<User> listUsers(HttpServletRequest request, HttpServletResponse response) {
         return userService.getUsers();
     }
@@ -36,7 +36,7 @@ public class AdminUserRestController {
         userService.deleteUser(id);
     }
 
-    @GetMapping("/user/{name}")
+    @GetMapping("/{name}")
     public User userEditForm(@PathVariable String name) {
         return userService.findByUsername(name);
     }
